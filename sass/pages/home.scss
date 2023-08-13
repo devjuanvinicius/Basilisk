@@ -1,0 +1,281 @@
+// Barra de navegação
+
+.nav-home{
+  padding-top: 40px;
+  text-transform: uppercase;
+  @include flex(flex, row, space-around, center)
+}
+
+.links{
+  ul{
+    width: 285px;
+    height: 15px;
+    list-style: none;
+    @include flex(flex, row, space-between, center)
+  }
+
+  ul li a{
+    font-size: 18px;
+    font-weight: 500; 
+  }
+}
+
+.blog, .contato{
+  color: $text-color;
+}
+
+.select{
+  color: $primary-color;
+}
+
+.btn-acess{
+  a, button a{
+    @include text-style($text-color, 18px, 500)
+  }
+
+  button{
+    background-color: transparent;
+    border: 2px solid $primary-color;
+    border-radius: 22px;
+    margin-left: 65px;
+    padding: 10px 14px;
+    width: 180px;
+    text-transform: uppercase;
+  }
+}
+
+// Main
+
+.main-home{
+  height: 580px;
+  @include flex(flex, row, space-evenly, center)
+}
+
+.txt-main{
+  h1{
+    @include text-style($text-color, 64px, 700);
+    line-height: 84px;
+  }
+
+  h1 span, p span{
+    color: $primary-color;
+  }
+
+  p{
+    @include text-style($text-color, 18px, 400);
+    width: 545px;
+    margin-top: 25px;
+    line-height: 24px;
+  }
+}
+
+.coin img{
+  width: 400px;
+}
+
+// About us
+
+.about{
+  height: 620px;
+  background-color: $secundary-color;
+  gap: 160px;
+  @include flex(flex, row, space-evenly, center);
+}
+
+.txt-about{
+  width: 595px;
+}
+
+.txt-about{
+  h2{
+    @include text-style($text-color, 40px, 700);
+  }
+
+  h2 span{
+    color: $primary-color;
+  }
+
+  p{
+    padding-top: 22px;
+    line-height: 24px;
+    @include text-style($text-color, 18px, 400);
+  }
+}
+
+.icons{
+  width: 515px;
+  height: 425px;
+  gap: 30px;
+  @include flex(flex,column, none, none);
+}
+
+.icons-sup, .icons-inf{
+  @include flex(flex, row, space-between, none);
+  gap: 60px;
+}
+
+.wallet, .calendar, .investment, .piggy{
+  img{
+    width: 50px;
+  }
+
+  h2{
+    @include text-style($text-color, 18px, 700);
+    margin: 15px 0;
+    font-weight: 700;
+  }
+
+  p{
+    @include text-style($text-color, 15px, 400);
+    line-height: 20px;
+  }
+}
+
+// Integração com bancos
+
+.banks{
+  height: 310px;
+  @include flex(flex, column, center, center);
+
+  h1{
+    @include text-style($text-color, 36px, 700);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 48px;
+  }
+}
+
+.icons-banks{
+  width: 750px;
+  @include flex(flex, row, space-between, center);
+}
+
+// Footer
+
+.footer-home{
+  height: 340px;
+  background-color: $secundary-color;
+  @include flex(flex, row, space-between, center);
+}
+
+// Lado esquerdo
+
+.footer-left{
+  width: 60%;
+  margin-left: 80px;
+  @include flex(flex, column, none, none);
+
+  img{
+    width: 185px;
+    margin-bottom: 36px;
+  }
+}
+
+.links-footer{
+  width: 750px;
+  @include flex(flex, row, space-between, none);
+}
+
+.services, .about-us, .help{
+  @include flex(flex, column, none, none);
+  gap: 16px;
+  
+  h2{
+    @include text-style($text-color, 20px, 600);
+  }
+
+  a{
+    @include text-style($text-color, 15px, none);
+  }
+}
+
+// Lado direito
+
+.footer-right{
+  width: 40%;
+  @include flex(flex, column, none, none);
+}
+
+.newsletter{
+  h2{
+    color: $text-color;
+    font-size: 25px;
+  }
+
+  form input[type=email]{
+    @include text-style($primary-color, 18px, none);
+    border: 1px solid $primary-color;
+    background-color: transparent;
+    width: 400px;
+    height: 50px;
+    padding-left: 10px;
+    margin: 0;
+    transition: .2s ease-in-out;
+  }
+
+  .newsletter form input[type=email]::placeholder{
+    @include text-style($text-color, 16px, 400);
+    font-family: $font;
+  }
+
+  form input[type=email]:focus{
+    outline: none;
+    background-color: #111111;
+  }
+
+  form input[type=submit]{
+    border: 1px solid $primary-color;
+    background-color: transparent;
+    width: 150px;
+    height: 54px;
+    padding-left: 10px;
+    margin: 20px 0;
+    cursor: pointer;
+    transition: background-color .3s ease-in; 
+    @include text-style($primary-color, 18px, none);
+  }
+
+  form input[type=submit]:hover{
+    background-color: $bg-color;
+  }
+}
+
+.socials{
+  ul{
+    display: flex;
+    gap: 15px;
+    margin-right: 80px;
+  }
+
+  ul li a img{
+    width: 30px;
+    height: 30px;
+  }
+}
+
+// Developed by
+
+.developed{
+  @include flex(flex, row, center, center);
+  height: 60px;
+
+  p{
+    @include text-style($text-color, normal, 600);
+  }
+}
+
+// Personalização scrollbar e seleção
+
+::-webkit-scrollbar{
+  background-color: black;
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb{
+  background-color: $text-color;
+  border-radius: 5px;
+}
+
+::selection{
+  background-color: black;
+}

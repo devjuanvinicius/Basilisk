@@ -1,5 +1,12 @@
-// Import colors
-@import "./colors/colors.scss";
+// Import variaveis
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;700&display=swap');
+@import "./utilities/variables.scss";
+
+// Import mixin
+@import "./utilities/mixin.scss";
+
+// Reset css
+@import "./reset.scss";
 
 // Import home
 @import "./pages/home.scss";
@@ -14,4 +21,4 @@
 @import "./pages/login.scss";
 
 // Import cadastro
-@import "./pages/cadastro.scss"
+@import "./pages/cadastro.scss";
