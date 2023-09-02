@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Cadastro</title>
+</head>
+<body class="body-cadastro">
+    <div class="lados">
+        <div class="esquerda">
+            <div class="cima">
+                <div class="pt_cima">
+                    <h1 class="refrao"> "Te ajudando a simplificar <span style="color: #FFCB74;"> </br> o simples"</span></h1>
+                    <img class="imagem" src="../assets/Ilustrações/Financial-data-amico.svg" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="direita">
+            <div class="card">
+                <div class="cadastro">
+                    <div class="logo">
+                        <img src="../assets/logo.svg" alt="">
+                    </div>
+                    <div class="alt">
+                        <form action="#" method="post">
+                            <div class="nome">
+                                <label class="corz" for="nome">Nome:</label><br>
+                                <input type="text" id="nome" name="nome" required><br><br>
+                            </div>
+                            <!--explicar-->
+                            <div class="vaicacete">
+                                <div class="datadenac">
+                                    <label class="corz" for="dataNascimento">Data de Nascimento:</label><br>
+                                    <input type="date" id="dataNascimento" name="dataNascimento"  min="1930-01-01"  required><br><br>
+                                </div>
+                                <div class="gener">
+                                    <label class="corz" style="margin-left: 10px;" for="genero">Gênero:</label><br>
+                                    <select id="genero" name="genero">
+                                        <option value="masculino">Masculino</option>
+                                        <option value="feminino">Feminino</option>
+                                        <option value="outro">Outro</option>
+                                    </select><br><br>
+                                </div>
+                            </div>
+                        </form>
+                        <!--explicar-->
+                    </div>
+                    <div class="baix">
+                        <form action="#" method="post">
+                            <div class="emai">
+                                <label class="corz" for="email">E-mail:</label><br>
+                                <input type="email" id="email" name="email" required><br><br>
+                            </div>
+                            <div class="senha">
+                                <label class="corz" for="email">Senha:</label><br>
+                                <input type="password" id="senha" name="senha" required><br><br>
+                            </div>
+                            <input class="finalizar" type="submit" value="Cadastrar-se">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<!--para nao colocar data futura-->
+<script> 
+    const hoje = new Date().toISOString().slice(0, 10);
+    document.getElementById("dataNascimento").setAttribute("max", hoje);
+  </script>
+<!--fim para nao colocar data futura-->

@@ -1,0 +1,285 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&family=Karla:ital,wght@0,300;0,700;1,300&family=PT+Sans+Narrow:wght@400;700&family=Roboto+Condensed:wght@300;400;700&family=Roboto+Mono:wght@400;500&family=Roboto+Slab:wght@100;200;300;400;500;600;700;800&family=Rubik:ital,wght@0,300;0,500;1,400&display=swap');
+body{
+    background-color: #111111;
+}
+
+*{
+    text-decoration: none;
+}
+
+a{
+    color: #F6F6F6;
+    text-decoration: none;
+    font-family: 'Roboto Slab', serif;
+    font-weight: 500;
+    width: 285px;
+    height: 15px;
+    font-size: 14pt;
+}
+
+.cabeca{
+    max-width: 1550px;
+    padding-top: 50px;
+    padding-bottom: 30px;
+    padding-right: 0px;
+}
+
+.logo{
+    margin-left: 5%;
+}
+
+.pri_list{
+    float: left;
+    list-style-type: none;
+    margin-left: 36%;
+}
+
+.pri_list2{
+    float: left;
+    list-style-type: none;
+    margin-left: 7%;
+}
+
+.pri_list3{
+    float: left;
+    list-style-type: none;
+    margin-left: 7%;
+}
+
+.coluna3{
+    padding-left: 85px;
+    margin-right: 0px;
+}
+
+.link-1{
+    float: left;
+    list-style-type: none;
+    margin-left: 16%;
+}
+.cadastre{
+    background-color: transparent;
+    border: 2px solid #FFCB74;
+    border-radius: 24px;
+    margin-left: 17%;
+    padding: 8px 14px;
+    padding-left: 22px;
+    width: 180px;
+    text-transform: uppercase;
+    margin-top: -10px;
+}
+
+/*fim da navegação, começo de principal esquerdo*/
+
+main .principal{
+    background-color: rb(54, 70, 88);
+    max-width: 1550px;
+    margin-left: 7%;
+}
+
+.box_grande{
+    background-color: 443344;
+    
+}
+
+.pri_img{
+    width: 82%;
+    padding: 0;
+    margin-left: 12px;
+    margin-top: 12px;
+    border: 3px solid #FFCB74;
+    border-radius: 7px;
+}
+
+p{
+    color: #FFCB74;
+    font-family: 'Roboto Slab', serif;
+}
+
+p.p-1{
+    font-size: 15pt;
+    margin-left: 9px;
+    margin-top: 10px;
+    font-weight: 500;
+}
+
+p.t-1{
+    color: #F6F6F6;
+    font-size: 18pt;
+    font-weight: 400;
+    margin-top: -8px;
+}
+
+p.tx-1{
+    color: #F6F6F6;
+    font-weight: 300;
+    margin-top: -8px;
+}
+
+div.linha-1{
+    width: 85%;
+    height: 1px;
+    background-color: #FFCB74;
+    margin-left: 10px;
+    margin-top: -5px;
+}
+
+img.calendario-1{
+    width: 32px;
+    margin-top: 5px;
+}
+
+img.perfil-1{
+    width: 32px;
+    margin-top: 5px;
+    margin-left: -15px;
+}
+
+p.data-1{
+    margin-top: 10px;
+    margin-left: -55px;
+    letter-spacing: 2px;
+    font-size: 9pt;
+}
+
+p.nome-1{
+    margin-top: 10px;
+    margin-left: -76px;
+    letter-spacing: 2px;
+    font-size: 9pt;
+}
+
+div.linha-icons1{
+    background-color: rb(67, 62, 55);
+    max-width: 80%;
+}
+
+/*fim da navegação, começo de principal direito*/
+
+main .linha_baixo{
+    background-color: 463446;
+}
+
+main .linha_cima{
+    background-color: rb(8, 72, 50);
+}
+
+img.seg-img{
+    width: 60%;
+    padding: 0;
+    margin-left: 12px;
+    margin-top: 12px;
+    border: 2px solid #FFCB74;
+    border-radius: 5px;
+}
+
+p.p-2{
+    font-family: 'Roboto Slab', serif;
+    margin-left: 17px;
+}
+
+p.t-2{
+    color: #F6F6F6;
+    margin-left: 13px;
+    margin-top: -15px;
+    font-size: 16pt;
+}
+
+p.tx-2{
+    color: #F6F6F6;
+    margin-left: 13px;
+    margin-top: -10px;
+    font-weight: 200;
+    font-size: 11pt;
+}
+
+p.veja-mais2{
+    margin-left: 12px;
+    margin-top: -15px;
+    font-size: 11pt;
+    font-weight: 200;
+}
+
+div.linha-2{
+    height: 1px;
+    width: 90%;
+    background-color: #FFCB74;
+    margin-top: -25px;
+    margin-left: 24px;
+}
+
+img.calendario-2{
+    width: 24px;
+    margin-left: 10px;
+    margin-top: -32px;
+}
+
+p.data-2{
+    margin-top: -10px;
+    margin-left: -35px;
+    letter-spacing: 2px;
+    font-size: 8pt;
+}
+
+img.perfil-2{
+    width: 24px;
+    margin-left: -18px;
+    margin-top: -30px;
+}
+
+p.nome-2{
+    margin-top: -9px;
+    margin-left: -65px;
+    letter-spacing: 1px;
+    font-size: 9pt;
+    line-height: 1.1;
+}
+
+/*fim do principal direita, início footer*/
+
+div.fim{
+    max-width: 1550px;
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+img.insta{
+    width: 30px;
+    margin-left: -3%;
+}
+
+img.twitter{
+    width: 30px;
+    margin-left: 3%;
+}
+
+img.face{
+    width: 30px;
+    margin-left: 3%;
+}
+
+img.linkedin{
+    width: 30px;
+    margin-left: 4%;
+}
+
+button.leia-mais{
+    padding: 2px 20px;
+    padding-top: 4px;
+    margin-left: 85px;
+    display: inline-flex;
+    align-items: center;
+    border: none;
+    border-radius: 15px;
+    background-color: #2F2F2F;
+    color: #F6F6F6;
+    font-family: 'Roboto Slab', serif;
+    font-size: 10pt;
+    font-weight: 400;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+img.botao{
+    width: 20px;
+    margin-left: 6px;
+}
