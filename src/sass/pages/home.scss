@@ -3,7 +3,7 @@
 .nav-home{
   padding-top: 40px;
   text-transform: uppercase;
-  @include flex(flex, row, space-around, center)
+  @include flex(row, space-around, center)
 }
 
 .links{
@@ -11,7 +11,7 @@
     width: 285px;
     height: 15px;
     list-style: none;
-    @include flex(flex, row, space-between, center)
+    @include flex(row, space-between, center)
   }
 
   ul li a{
@@ -48,7 +48,7 @@
 
 .main-home{
   height: 580px;
-  @include flex(flex, row, space-evenly, center)
+  @include flex(row, space-evenly, center)
 }
 
 .txt-main{
@@ -79,7 +79,7 @@
   height: 620px;
   background-color: $secundary-color;
   gap: 160px;
-  @include flex(flex, row, space-evenly, center);
+  @include flex(row, space-evenly, center);
 }
 
 .txt-about{
@@ -106,11 +106,11 @@
   width: 515px;
   height: 425px;
   gap: 30px;
-  @include flex(flex,column, none, none);
+  @include flex(column, none, none);
 }
 
 .icons-sup, .icons-inf{
-  @include flex(flex, row, space-between, none);
+  @include flex(row, space-between, none);
   gap: 60px;
 }
 
@@ -135,7 +135,7 @@
 
 .banks{
   height: 310px;
-  @include flex(flex, column, center, center);
+  @include flex(column, center, center);
 
   h1{
     @include text-style($text-color, 36px, 700);
@@ -147,7 +147,7 @@
 
 .icons-banks{
   width: 750px;
-  @include flex(flex, row, space-between, center);
+  @include flex(row, space-between, center);
 }
 
 // Footer
@@ -155,7 +155,7 @@
 .footer-home{
   height: 340px;
   background-color: $secundary-color;
-  @include flex(flex, row, space-between, center);
+  @include flex(row, space-between, center);
 }
 
 // Lado esquerdo
@@ -163,7 +163,7 @@
 .footer-left{
   width: 60%;
   margin-left: 80px;
-  @include flex(flex, column, none, none);
+  @include flex(column, none, none);
 
   img{
     width: 185px;
@@ -173,11 +173,11 @@
 
 .links-footer{
   width: 750px;
-  @include flex(flex, row, space-between, none);
+  @include flex(row, space-between, none);
 }
 
 .services, .about-us, .help{
-  @include flex(flex, column, none, none);
+  @include flex(column, none, none);
   gap: 16px;
   
   h2{
@@ -193,7 +193,7 @@
 
 .footer-right{
   width: 40%;
-  @include flex(flex, column, none, none);
+  @include flex(column, none, none);
 }
 
 .newsletter{
@@ -256,7 +256,7 @@
 // Developed by
 
 .developed{
-  @include flex(flex, row, center, center);
+  @include flex(row, center, center);
   height: 60px;
 
   p{
