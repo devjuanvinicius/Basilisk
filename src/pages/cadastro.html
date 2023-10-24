@@ -19,49 +19,55 @@
             </div>
         </div>
         <div class="direita">
-            <div class="card">
-                <div class="cadastro">
-                    <div class="logo">
-                        <img src="../assets/logo.svg" alt="">
+            <div class="content-cad">
+                <img src="../assets/logo.svg" alt="" class="logo-cad">
+
+                <form action="" class="form-cad">
+                    <div class="nome-cad">
+                        <label for="nome">Nome:</label>
+                        <input type="text" name="nome" id="nome" required>
                     </div>
-                    <div class="alt">
-                        <form action="#" method="post">
-                            <div class="nome">
-                                <label class="corz" for="nome">Nome:</label><br>
-                                <input type="text" id="nome" name="nome" required><br><br>
-                            </div>
-                            <!--explicar-->
-                            <div class="vaicacete">
-                                <div class="datadenac">
-                                    <label class="corz" for="dataNascimento">Data de Nascimento:</label><br>
-                                    <input type="date" id="dataNascimento" name="dataNascimento"  min="1930-01-01"  required><br><br>
-                                </div>
-                                <div class="gener">
-                                    <label class="corz" style="margin-left: 10px;" for="genero">Gênero:</label><br>
-                                    <select id="genero" name="genero">
-                                        <option value="masculino">Masculino</option>
-                                        <option value="feminino">Feminino</option>
-                                        <option value="outro">Outro</option>
-                                    </select><br><br>
-                                </div>
-                            </div>
-                        </form>
-                        <!--explicar-->
+
+                    <div class="dual-input">
+                        <div class="nasc">
+                            <label for="nasc">Data de nascimento</label>
+                            <input type="date" name="nasc" id="nasc" required>
+                        </div>
+                        <div class="gender">
+                            <label for="genero">Genero</label>
+                            <select name="genero" id="genero" required>
+                                <option value="masc">
+                                    Masculino
+                                </option>
+                                <option value="fem">
+                                    Feminino
+                                </option>
+                                <option value="outro">
+                                    Outro
+                                </option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="baix">
-                        <form action="#" method="post">
-                            <div class="emai">
-                                <label class="corz" for="email">E-mail:</label><br>
-                                <input type="email" id="email" name="email" required><br><br>
-                            </div>
-                            <div class="senha">
-                                <label class="corz" for="email">Senha:</label><br>
-                                <input type="password" id="senha" name="senha" required><br><br>
-                            </div>
-                            <input class="finalizar" type="submit" value="Cadastrar-se">
-                        </form>
+
+                    <div class="e-mail-cad">
+                        <label for="email">E-mail:</label>
+                        <input type="email" name="email" id="email" required>
                     </div>
-                </div>
+
+                    <div class="senha-cad">
+                        <label for="senha">Senha:</label>
+                        <input type="password" name="senha" id="senha">
+                    </div>
+
+                    <div class="termos-cad">
+                        <input type="checkbox" name="termo" id="termo">
+                        <label for="termo">Li e concordo com os <a href="./termos-de-uso.html">termos de uso</a></label>
+                    </div> 
+
+                    <div class="submit-cad">
+                        <input type="submit" value="Cadastrar-se" class="btn-cad">
+                    </div>
+                </form>
             </div>
         </div>
     </div>
