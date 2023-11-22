@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 22/11/2023 às 12:09
+-- Tempo de geração: 19/11/2023 às 06:28
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -49,7 +49,9 @@ INSERT INTO `cadastro` (`id_cad`, `nome_cad`, `data_cad`, `gen_cad`, `email_cad`
 (11, 'Juan Vinicius', '2004-11-21', 'masc', 'juangamerxbrcwb2004@gmail.com', 'vivi2004'),
 (12, 'Juan Souza', '2004-11-21', 'masc', 'kng@gmail.com', 'juanvi2004'),
 (13, 'dasdasdas Souza', '2004-11-21', 'masc', 'dev.juanlinicius@gmail.com', 'dasdasdasdas'),
-(14, 'Leticia Marques', '2009-01-01', 'masc', 'leticia@gmail.com', '123456');
+(14, 'Leticia Marques', '2009-01-01', 'masc', 'leticia@gmail.com', '123456'),
+(15, 'tesTTT TTT', '1988-05-04', 'fem', 'RGREG@gmail.comad', 'senhaadm'),
+(16, 'TERG FERGER', '0456-05-25', 'masc', 'GREGdmincad@gmail.comERGER', 'senhaadm');
 
 -- --------------------------------------------------------
 
@@ -70,23 +72,23 @@ CREATE TABLE `infos_bancarias` (
   `gastos_pessoais` int(20) NOT NULL,
   `gastos_comunicacao` int(20) NOT NULL,
   `gastos_lazer` int(20) NOT NULL,
-  `moeda-renda` varchar(20) NOT NULL,
-  `moeda-gasto` varchar(20) NOT NULL,
-  `id_user` int(11) NOT NULL
+  `gastos_investimento` int(20) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `visualizar_saldo_usd` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Despejando dados para a tabela `infos_bancarias`
 --
 
-INSERT INTO `infos_bancarias` (`id_dados`, `renda_mensal`, `outra_renda`, `renda_final`, `gastos_moradia`, `gastos_alimentacao`, `gastos_transporte`, `gastos_saude`, `gastos_educacao`, `gastos_pessoais`, `gastos_comunicacao`, `gastos_lazer`, `moeda-renda`, `moeda-gasto`, `id_user`) VALUES
-(26, 1000, 100, 1100, 100, 100, 100, 100, 100, 100, 100, 100, 'real', 'real', 12);
-
--- --------------------------------------------------------
+INSERT INTO `infos_bancarias` (`id_dados`, `renda_mensal`, `outra_renda`, `renda_final`, `gastos_moradia`, `gastos_alimentacao`, `gastos_transporte`, `gastos_saude`, `gastos_educacao`, `gastos_pessoais`, `gastos_comunicacao`, `gastos_lazer`, `gastos_investimento`, `id_user`, `visualizar_saldo_usd`) VALUES
+(11, 1000, 100, 1100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 10, 0),
+(12, 545, 545, 1090, 545, 545, 65, 545, 656, 54, 4, 0, 0, 8, 0);
 
 --
--- Estrutura para tabela `postagem_blog`
+-- Índices para tabelas despejadas
 --
+
 
 CREATE TABLE `postagem_blog` (
   `id_post` int(11) NOT NULL,
@@ -104,11 +106,6 @@ CREATE TABLE `postagem_blog` (
 
 INSERT INTO `postagem_blog` (`id_post`, `title_post`, `subt_post`, `text_post`, `data_post`, `img_post`, `id_escritor`) VALUES
 (1, 'Juan', 'Vinicius', 'KKKKKKKKKKKKKK\r\nMMMMMMMMMMM', '2023-11-19 17:09:10', '66450773_2330973560553917_607020578485829632_n.jpg', 0);
-
---
--- Índices para tabelas despejadas
---
-
 --
 -- Índices de tabela `cadastro`
 --
@@ -119,33 +116,39 @@ ALTER TABLE `cadastro`
 -- Índices de tabela `infos_bancarias`
 --
 ALTER TABLE `infos_bancarias`
-  ADD PRIMARY KEY (`id_dados`);
-
---
--- Índices de tabela `postagem_blog`
---
-ALTER TABLE `postagem_blog`
-  ADD PRIMARY KEY (`id_post`);
+  ADD PRIMARY KEY (`id_dados`),
+  ADD KEY `id_user` (`id_user`);
 
 --
 -- AUTO_INCREMENT para tabelas despejadas
 --
 
+ALTER TABLE `postagem_blog`
+  ADD PRIMARY KEY (`id_post`);
+
 --
 -- AUTO_INCREMENT de tabela `cadastro`
 --
 ALTER TABLE `cadastro`
-  MODIFY `id_cad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_cad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de tabela `infos_bancarias`
 --
 ALTER TABLE `infos_bancarias`
-  MODIFY `id_dados` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id_dados` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT de tabela `postagem_blog`
+-- Restrições para tabelas despejadas
 --
+
+--
+-- Restrições para tabelas `infos_bancarias`
+--
+ALTER TABLE `infos_bancarias`
+  ADD CONSTRAINT `infos_bancarias_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `cadastro` (`id_cad`);
+COMMIT;
+
 ALTER TABLE `postagem_blog`
   MODIFY `id_post` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
