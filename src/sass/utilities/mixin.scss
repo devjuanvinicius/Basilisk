@@ -1,0 +1,31 @@
+@mixin text-style($color, $font-size, $font-weight){
+  color: $color;
+  font-size: $font-size;
+  font-weight: $font-weight;
+}
+
+@mixin flex($flex-direction, $justify-content, $align-items){
+  display: flex;
+  flex-direction: $flex-direction;
+  justify-content: $justify-content;
+  align-items: $align-items;
+}
+
+@mixin btn($height, $padding, $font-size){
+  height: $height;
+  padding: 0 $padding;
+  border-radius: 12px;
+  border: none;
+  background-color: $primary-color;
+  @include text-style($bg-color, $font-size, 700);
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+}
+
+.btn-md{
+  @include btn(40px, 32px, 1rem);
+}
+
+.btn-sm{
+  @include btn(32px, 16px, .8rem);
+}

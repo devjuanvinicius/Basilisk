@@ -1,0 +1,113 @@
+.perfil-invi{
+  justify-content: flex-end;
+}
+
+.primeira-linha-invi{
+  height: 45%;
+  margin-top: 30px;
+}
+
+.segunda-linha-invi{
+  height: 55%;
+}
+
+.card-moeda{
+  height: 100%;
+  width: 25%;
+  background-color: $secundary-color;
+  border-radius: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+
+  h2{
+    @include text-style($text-color, 1.6rem, 600);
+  }
+
+  hr{
+    width: 85%;
+    border: 1px solid $primary-color;
+  }
+}
+
+.title-moeda{
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.txt-moeda{
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  h3{
+    @include text-style($text-color, 2.2rem, 600);
+    margin-bottom: 15px
+  }
+  
+  p{
+    @include text-style($text-color, 1.9rem, 600);
+    
+  }
+
+  span{
+    @include text-style($primary-color, 1.9rem, 600);
+  }
+}
+
+.card-invi{
+  padding: 0;
+  width: 45%;
+}
+
+.card-total{
+  width: 65%;
+}
+
+.card-total h2{
+  font-size: 2.2rem;
+
+  p{
+    font-size: 2.5rem;
+    font-weight: 600;
+  }
+}
+
+.card-infos-invi{
+  height: 100%;
+  width: 75%;
+  background-color: $secundary-color;
+  border-radius: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 0 15px;
+  flex-wrap: wrap;
+}
+
+.card-invi-mudanca{
+  height: 40%;
+  width: 40%;
+  // border-radius: 25px;
+  // background-color: rgba($color: $primary-color, $alpha: .9);
+  border-bottom: 2px solid $primary-color;
+  border-right: 2px solid $primary-color;
+  border-bottom-right-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  h2{
+    @include text-style($text-color, 2rem, 700);
+  }
+
+  p{
+    @include text-style($text-color, 1.8rem, 700);
+  }
+}

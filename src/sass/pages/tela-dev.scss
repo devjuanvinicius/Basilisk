@@ -1,0 +1,98 @@
+.main-dev{
+  height: 80vh;
+  display: flex;
+  flex-direction: row;
+  margin-top: 30px;
+  padding-right: 30px;
+  gap: 40px;
+}
+
+.column-infos-dev{
+  width: 75%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-left: 40px;
+  gap: 30px;
+}
+
+.primeira-linha-dev{
+  height: 40%;
+  display: flex;
+  gap: 30px;
+}
+
+.segunda-linha-dev{
+  width: 100%;
+  height: 60%;
+  background-color: $secundary-color;
+  border-radius: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-dev{
+  width: 50%;
+  height: 100%;
+  background-color: $secundary-color;
+  border-radius: 40px;
+  display: flex;
+  flex-direction: column;
+  padding-left: 35px;
+  justify-content: center;
+  gap: 15px;
+
+  h1{
+    @include text-style($text-color, 2.3rem, 600);
+  }
+
+  p{
+    @include text-style($text-color, 2.3rem, 400);
+  }
+
+  span{
+    @include text-style($primary-color, 2.3rem, 400);
+  }
+}
+
+.column-btn-dev{
+  width: 25%;
+  height: 100%;
+  background-color: $secundary-color;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+
+  h1{
+    @include text-style($text-color, 2.3rem, 600);
+    margin-top: 40px;
+  }
+}
+
+.btns-dev{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  height: 80%;
+  gap: 20px;
+
+  a{
+    width: 45%;
+    height: 20%;
+  }
+
+  button{
+    height: 100%;
+  }
+}
+
+.grafico-dev{
+  // width: 55%;
+  height: 90%;
+}

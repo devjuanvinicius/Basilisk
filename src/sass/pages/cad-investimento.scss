@@ -1,0 +1,41 @@
+.main-cad-investimento{
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+
+  form{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.input-invest{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 70%;
+  justify-content: center;
+  margin-bottom: 30px;
+
+  label{
+    color: $text-color;
+  }
+
+  input{
+    height: 25px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    padding: 10px;
+    font-family: $font;
+  }
+}
+
+.btn-cad-invest{
+  width: 60%;
+}

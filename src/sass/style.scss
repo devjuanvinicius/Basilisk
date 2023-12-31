@@ -1,0 +1,66 @@
+// Import fontes
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&display=swap');
+
+// Import variaveis
+@import "./utilities/variables.scss";
+
+// Import mixin
+@import "./utilities/mixin.scss";
+
+// Reset css
+@import "./reset.scss";
+
+// Import home
+@import "./pages/home.scss";
+
+// Import contato
+@import "./pages/contato.scss";
+
+// Import login
+@import "./pages/login.scss";
+
+// Import cadastro
+@import "./pages/cadastro.scss";
+
+// Import dashboard
+@import "./pages/dashboard.scss";
+
+// Import termos
+@import "./pages/termos-de-uso.scss";
+
+// Import blog page
+@import "./pages/pagina-blog.scss";
+
+// Import cadastro infos bancarias
+@import "./pages/cadastro-infos-banco.scss";
+
+// Import postagem blog
+@import "./pages/editor.scss";
+
+// Import load cadastro investimento
+@import "./pages/explicacao.scss";
+
+// Import cad investimento
+@import "./pages/cad-investimento.scss";
+
+// Import blog
+@import "./pages/blog.scss";
+
+// Import cofrinho
+@import "./pages/cofrinho.scss";
+
+// Import proposta-cofrinho
+@import "./pages/proposta-cofrinho.scss";
+
+// Import escolha-cofrinho
+@import "./pages/escolha-cofrinho.scss";
+
+// Import perfil
+@import "./pages/perfil.scss";
+
+// Import investimento
+@import "./pages/investimento.scss";
+
+// Import tela dev
+@import "./pages/tela-dev.scss";

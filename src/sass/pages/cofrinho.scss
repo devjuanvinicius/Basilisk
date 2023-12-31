@@ -1,0 +1,172 @@
+.linha-perfil{
+  height: 7%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+  
+  h1{
+    @include text-style($primary-color, 2.5rem, 700);
+  }
+}
+
+.perfil-cofre{
+  margin: 0;
+}
+
+.cards-cofrinho{
+  width: 100%;
+  height: 85%;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+}
+
+.primeira-linha-cofre{
+  height: 40%;
+  display: flex;
+  gap: 40px;
+}
+
+.primeiro-card, .segundo-card{
+  width: 77%;
+  height: 100%;
+  background-color: $secundary-color;
+  border-radius: 50px;
+  padding-left: 40px;  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+
+.primeiro-card, .segundo-card, .card-um, .card-dois{
+  h2{
+    @include text-style($text-color, 1.7rem, 600);
+  }
+
+  p{
+    @include text-style($text-color, 3.5rem, 500);
+  }
+
+  span{
+    color: $primary-color;
+  }
+
+  // exlusivo para o primeiro card
+
+  span:nth-child(2){
+    @include text-style($text-color, 1.8rem, 500)
+  }
+}
+
+.segundo-card{
+  width: 33%;
+}
+
+.segunda-linha-cofrinho{
+  height: 60%;
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+}
+
+.card-column-progress{
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.card-progress, .card-outros{
+  height: 35%;
+  width: 100%;
+  background-color: $secundary-color;
+  border-radius: 40px;
+  flex-wrap: nowrap;
+}
+
+.card-progress{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  @include text-style($text-color, 1.8rem, 600);
+}
+
+.card-outros{
+  height: 65%;
+}
+
+.card-column-infos{
+  width: 25%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+} 
+
+.card-um, .card-dois{
+  width: 100%;
+  height: 50%;
+  background-color: $secundary-color;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.card-um p{
+    font-size: 2.8rem;
+}
+
+.barra-progresso{
+  width: 90%;
+  height: 40px;
+  border-radius: 0.7rem;
+  background-color: $bg-color;
+}
+
+.progress-bar{
+  border-radius: 0.7rem;
+  background-color: $primary-color;
+  color: $bg-color;
+  font-size: 1.1rem;
+}
+
+.card-column-progress{
+  width: 75%;
+}
+
+.card-outros{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @include text-style($text-color, 1.8rem, 600);
+
+  h2{
+    margin-top: 15px;
+  }
+}
+
+.outros{
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  margin-top: 15px;
+  justify-content: space-between;
+  align-items: center;
+  width: 93%;
+  border-left: 1px solid $text-color;
+  border-bottom: 1px solid $text-color;
+  padding: 10px;
+
+  p{
+    @include text-style($text-color, 1.5rem, 500);
+  }
+}

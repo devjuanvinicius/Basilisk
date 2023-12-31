@@ -1,0 +1,147 @@
+.body-cad-info{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+
+  h1{
+    color: $text-color;
+    font-size: 1.1rem;
+  }
+
+  form{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 20px;
+    margin-bottom: 10px;
+
+    h2{
+      color: $primary-color;
+      text-align: center;
+      text-transform: uppercase;
+      font-size: 1.2rem;
+      text-decoration: underline;
+    }
+
+    .h2-gastos{
+      margin-top: 10px;
+    }
+  }
+}
+
+.logo-and-aviso{
+  width: 100%;
+  
+  img{
+    margin-left: 30px;
+  }
+
+  h1{
+    text-align: center;
+  }
+
+  hr{
+    width: 8%;
+    opacity: .4;
+    margin-top: 15px;
+  }
+}
+
+
+.renda-cad-info, .outra-renda, .inputs-gastos, .investimento-cad-info{ 
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  label{
+    color: $text-color;
+    font-size: 1.15rem;
+  }
+
+  input{
+    height: 25px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    padding: 10px;
+    font-family: $font;
+  }
+}
+
+.outra-renda{
+  width: 50%;
+}
+
+.outra-renda-dolar{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.moeda-renda, .moeda-gasto{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 48%;
+
+  label{
+    color: $text-color;
+    font-size: 1.15rem;
+  }
+
+  select{
+    height: 45px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    padding: 10px;
+    font-family: $font;
+  }
+}
+
+.primeira-linha, .segunda-linha, .terceira-linha, .quarta-linha, .linha-moeda-gasto{
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.moeda-gasto{
+  select{
+    width: 100%;
+  }
+}
+
+.inputs-gastos{
+  width: 50%;
+}
+
+.gastos-cad-info{
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.btn-cad-info{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  input{
+    width: 30%;
+    height: 45px;
+    background-color: $primary-color;
+    font-size: 1.1rem;
+    color: $secundary-color;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0;
+    border: none;
+    text-align: center;
+    border-radius: 12px;
+    font-family: $font;
+  }
+}
