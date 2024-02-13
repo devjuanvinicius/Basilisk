@@ -42,7 +42,7 @@ Essa aplicação utiliza de recursos PHP e SQL aprendidos em aula, utilizando de
 
 ![Investimento](./src/assets/github/investimento.png)
 
-![Cofrinho](./src/assets/github/cofrinho.png)
+![Cofrinho](./src/assets/github/Cofrinho.png)
 
 ![Editor Blog](./src/assets/github/editor.png)
 ---
