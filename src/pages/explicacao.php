@@ -4,14 +4,12 @@ include "function.php";
 session_start();
 voltarLogin();
 
-$user_name=$conn->prepare('SELECT * FROM `cadastro` WHERE `id_cad`=:pid');
-$user_name->bindValue(':pid', $_SESSION['login']);
-$user_name->execute();
-$row_nome=$user_name->fetch();
+$url = $_GET['pagina'];
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,6 +19,7 @@ $row_nome=$user_name->fetch();
   <link rel="stylesheet" href="../css/style.css">
   <script src="../../vendor/bootstrap/js/bootstrap.js"></script>
 </head>
+
 <body>
   <header class="header-load">
     <img src="../assets/logo.svg" alt="">
@@ -35,10 +34,10 @@ $row_nome=$user_name->fetch();
       <div class="carousel-inner">
         <div class="carousel-item active">
           <?php
-            $url = $_GET['pagina'];
-            switch($url){
-              case 1:
-                echo "
+
+          switch ($url) {
+            case 1:
+              echo "
                   <div class=\"d-flex img-explicacao\">
                     <img src=\"../assets/ilustracoes/Finance-cuate.svg\" alt=\"\">
                   </div>
@@ -48,10 +47,10 @@ $row_nome=$user_name->fetch();
                     <p>Aqui você conseguirá organizar toda sua vida de investimentos. Poderá verificar via gráficos como sua carteira está divida, o quanto você já investiu e quando pretende ter o retorno.</p>
                   </div> 
                 ";
-                break;
+              break;
 
-              case 2:
-                echo "
+            case 2:
+              echo "
                   <div class=\"d-flex img-explicacao\">
                     <img src=\"../assets/ilustracoes/Money income-pana.svg\" alt=\"\">
                   </div>
@@ -61,16 +60,15 @@ $row_nome=$user_name->fetch();
                     <p>Bem-vindo à nossa Cofrinho Digital, um espaço dedicado para tornar seus sonhos financeiros realidade. Aqui, você consegue estabelecer uma meta desejada, como \"comprar uma TV\" por exemplo, e ajudaremos você a realizar isso!</p>
                   </div> 
                 ";
-                break;
-            }
+              break;
+          }
           ?>
         </div>
         <div class="carousel-item">
-        <?php
-            $url = $_GET['pagina'];
-            switch($url){
-              case 1:
-                echo "
+          <?php
+          switch ($url) {
+            case 1:
+              echo "
                   <div class=\"d-flex img-explicacao\">
                     <img src=\"../assets/ilustracoes/Investment data-cuate.svg\" alt=\"\">
                   </div>
@@ -82,8 +80,8 @@ $row_nome=$user_name->fetch();
                 ";
               break;
 
-              case 2:
-                echo "
+            case 2:
+              echo "
                   <div class=\"d-flex img-explicacao\">
                     <img src=\"../assets/ilustracoes/Done-pana.svg\" alt=\"\">
                   </div>
@@ -94,15 +92,14 @@ $row_nome=$user_name->fetch();
                   </div>
                 ";
               break;
-            }
+          }
           ?>
         </div>
         <div class="carousel-item">
-        <?php
-            $url = $_GET['pagina'];
-            switch($url){
-              case 1:
-                echo "
+          <?php
+          switch ($url) {
+            case 1:
+              echo "
                   <div class=\"d-flex img-explicacao\">
                     <img src=\"../assets/ilustracoes/Investor presentation-cuate.svg\" alt=\"\">  
                   </div>
@@ -118,8 +115,8 @@ $row_nome=$user_name->fetch();
                 ";
               break;
 
-              case 2:
-                echo "
+            case 2:
+              echo "
                   <div class=\"txt-carousel\">
                     <form action=\"proposta-cofrinho.php\" method=\"POST\">
                       <div class=\"input-explicacao\">
@@ -141,7 +138,7 @@ $row_nome=$user_name->fetch();
                   </div>
                 ";
               break;
-            }
+          }
           ?>
         </div>
       </div>
@@ -156,4 +153,5 @@ $row_nome=$user_name->fetch();
     </div>
   </main>
 </body>
+
 </html>

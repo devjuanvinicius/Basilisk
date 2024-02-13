@@ -7,25 +7,25 @@ logout();
 
 
 if(isset(($_GET['aceitar']))){
-  $nome_da_meta = $_GET['nome'];
+  $nomeDaMeta = $_GET['nome'];
   $valor = $_GET['valor'];
   $tempo = $_GET['tempo'];
 
   $aceitar = $conn->prepare('INSERT INTO `cofrinho` (`id_meta`, `nome_meta`,`valor_meta`, `tempo_meta`, `id_user`) VALUES (NULL, :pnome_meta, :pvalor, :ptempo, :pidUser);');
-  $aceitar->bindValue(':pnome_meta', $nome_da_meta);
+  $aceitar->bindValue(':pnome_meta', $nomeDaMeta);
   $aceitar->bindValue(':pvalor', $valor);
   $aceitar->bindValue(':ptempo', $tempo);
   $aceitar->bindValue(':pidUser', $_SESSION['login']);
   $aceitar->execute();
 
-  $row_cofrinho=$aceitar->fetch();
-  $id_row_cofrinho=$row_cofrinho['id_user'];
-  $_SESSION['cad_info_cofrinho']=$id_row_cofrinho;
+  $rowCofrinho=$aceitar->fetch();
+  $idRowCofrinho=$rowCofrinho['id_user'];
+  $_SESSION['cad_info_cofrinho']=$idRowCofrinho;
   header('location:cofrinho.php');
   exit();
 }
 
-$nome_meta = $_POST['nome_meta'];
+$nomeMeta = $_POST['nome_meta'];
 $valor = $_POST['guardar'];
 $tempo = $_POST['tempo'];
 
@@ -41,7 +41,7 @@ $terceiraProposta = $valor / $tempoTerceiraProposta = ($tempo + 4);
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -66,7 +66,7 @@ $terceiraProposta = $valor / $tempoTerceiraProposta = ($tempo + 4);
   
        <?php
         echo "
-            <a href=\"proposta-cofrinho.php?aceitar&nome=".$nome_meta."&valor=".$segundaProposta."&tempo=".$tempoSegundaProposta."\" class=\"\">
+            <a href=\"proposta-cofrinho.php?aceitar&nome=".$nomeMeta."&valor=".$segundaProposta."&tempo=".$tempoSegundaProposta."\" class=\"\">
                 <button class=\"btn-md\">Aceitar</button>
             </a>"
        ?>
@@ -82,7 +82,7 @@ $terceiraProposta = $valor / $tempoTerceiraProposta = ($tempo + 4);
   
         <?php
           echo "
-            <a href=\"proposta-cofrinho.php?aceitar&nome=".$nome_meta."&valor=".$primeiraProposta."&tempo=".$tempo."\" class=\"\">
+            <a href=\"proposta-cofrinho.php?aceitar&nome=".$nomeMeta."&valor=".$primeiraProposta."&tempo=".$tempo."\" class=\"\">
               <button class=\"btn-md\">Aceitar</button>
             </a>
           "
@@ -99,7 +99,7 @@ $terceiraProposta = $valor / $tempoTerceiraProposta = ($tempo + 4);
   
         <?php
           echo "
-            <a href=\"proposta-cofrinho.php?aceitar&nome=".$nome_meta."&valor=".$terceiraProposta."&tempo=".$tempoTerceiraProposta."\" class=\"\">
+            <a href=\"proposta-cofrinho.php?aceitar&nome=".$nomeMeta."&valor=".$terceiraProposta."&tempo=".$tempoTerceiraProposta."\" class=\"\">
               <button class=\"btn-md\">Aceitar</button>
             </a>
           "

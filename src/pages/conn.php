@@ -1,4 +1,9 @@
 <?php
-    $conn=new PDO('mysql:host=localhost;dbname=basilisk','root','');
-    // $conn=new PDO('mysql:host=localhost;dbname=basili43_basilisk','basili43_user_basilisk','Js#1314*484');
+
+require_once "bootstrap.php";
+
+$conn=new PDO(
+    'mysql:host='.getenv('DB_HOST').';dbname='.getenv('DB_NAME'),
+    getenv('DB_LOGIN'),
+    getenv('DB_PASS'));
 ?>

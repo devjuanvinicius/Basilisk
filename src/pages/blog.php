@@ -2,13 +2,13 @@
 include "conn.php";
 session_start();
 
-$verificarPostagem=$conn->prepare('SELECT * FROM `postagem_blog`');
+$verificarPostagem = $conn->prepare('SELECT * FROM `postagem_blog`');
 $verificarPostagem->execute();
-
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,6 +16,7 @@ $verificarPostagem->execute();
   <link rel="shortcut icon" href="../assets/fav-icon.ico" type="image/x-icon">
   <link rel="stylesheet" href="../css/style.css">
 </head>
+
 <body class="body-blog">
   <nav class="nav-blog">
     <div class="logo-blog">
@@ -57,41 +58,42 @@ $verificarPostagem->execute();
         </div>
       </div>
     </article>
-    <aside class="aside-blog"> 
+    <aside class="aside-blog">
       <div class="primeira-linha-blog">
         <?php
-          while($rowPostagem=$verificarPostagem->fetch()){
-            $verificarEscritor=$conn->prepare('SELECT * FROM `cadastro` WHERE `id_cad`=:pidEscritor');
-            $verificarEscritor->bindValue(':pidEscritor', $rowPostagem['id_escritor']);
-            $verificarEscritor->execute();
-            $nomeEscritor=$verificarEscritor->fetch();
-            $dataPost=date('d/m/Y', strtotime($rowPostagem['data_post']));
+        while ($rowPostagem = $verificarPostagem->fetch()) {
+          $verificarEscritor = $conn->prepare('SELECT * FROM `cadastro` WHERE `id_cad`=:pidEscritor');
+          $verificarEscritor->bindValue(':pidEscritor', $rowPostagem['id_escritor']);
+          $verificarEscritor->execute();
+          $nomeEscritor = $verificarEscritor->fetch();
+          $dataPostagem = date('d/m/Y', strtotime($rowPostagem['data_post']));
 
-            echo"
-              <a href=\"pagina-blog.php?id=".$rowPostagem['id_post']."\" class=\"postagem-blog\">
-                <img src=\"".$rowPostagem['img_post']."\" alt=\"\" class=\"bg-aside\">
+          echo "
+              <a href=\"pagina-blog.php?id=" . $rowPostagem['id_post'] . "\" class=\"postagem-blog\">
+                <img src=\"" . $rowPostagem['img_post'] . "\" alt=\"\" class=\"bg-aside\">
       
                 <div class=\"txt-postagem\">
-                  <h2>".$rowPostagem['catego_post']."</h2>
-                  <h1>".$rowPostagem['title_post']."</h1>
+                  <h2>" . $rowPostagem['catego_post'] . "</h2>
+                  <h1>" . $rowPostagem['title_post'] . "</h1>
                 </div>
                 <hr>
                 <div class=\"infos-post\">
                   <div class=\"data-post alteracao-data\">
                     <img src=\"../assets/Icones/icones-dourados/calendar.png\" alt=\"\">
-                    <p>".$dataPost."</p>
+                    <p>" . $dataPostagem . "</p>
                   </div>
                   <div class=\"autor-post alteracao-autor\">
                     <img src=\"../assets/Icones/icones-dourados/user.png\" alt=\"\">
-                    <p>".$nomeEscritor['nome_cad']."</p>
+                    <p>" . $nomeEscritor['nome_cad'] . "</p>
                   </div>
                 </div>
               </a>
             ";
-          }
+        }
         ?>
       </div>
     </aside>
   </main>
 </body>
+
 </html>

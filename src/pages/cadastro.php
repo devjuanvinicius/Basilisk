@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <title>Cadastro</title>
 </head>
+
 <body class="body-cadastro">
     <div class="lados">
         <div class="esquerda">
@@ -70,7 +71,7 @@
                     <div class="termos-cad">
                         <input type="checkbox" name="termo" id="termo">
                         <label for="termo">Li e concordo com os <a href="./termos-de-uso.html">termos de uso</a></label>
-                    </div> 
+                    </div>
 
                     <div class="submit-cad">
                         <input type="submit" value="Cadastrar-se" class="btn-cad" name="grava">
@@ -80,10 +81,11 @@
         </div>
     </div>
 </body>
+
 </html>
 
 <!--para nao colocar data futura-->
-<script> 
+<script>
     const hoje = new Date().toISOString().slice(0, 10);
     document.getElementById("nasc").setAttribute("max", hoje);
 </script>
@@ -100,23 +102,21 @@ if (isset($_POST['grava'])) {
     $email = $_POST['email'];
     $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
 
-    // Criando o nome completo
     $nomeCompleto = $nome . " " . $sobrenome;
 
-    // Verificando se o e-mail já existe
-    $verificarEmail = $conn->prepare('SELECT * FROM `cadastro` WHERE `email_cad` = :pemail');
-    $verificarEmail->bindValue(':pemail', $email);
-    $verificarEmail->execute();
+    $verificarEmailExiste = $conn->prepare('SELECT * FROM `cadastro` WHERE `email_cad` = :pemail');
+    $verificarEmailExiste->bindValue(':pemail', $email);
+    $verificarEmailExiste->execute();
 
-    if ($verificarEmail->rowCount() == 0) {
+    if ($verificarEmailExiste->rowCount() == 0) {
         // Inserindo novo usuário
-        $grava = $conn->prepare('INSERT INTO `cadastro` (`id_cad`, `nome_cad`, `data_cad`, `gen_cad`, `email_cad`, `url_cad`,`senha_cad`) VALUES (NULL, :pnome, :pdata, :pgenero, :pemail, "perfil-6.svg",:psenha);');
-        $grava->bindValue(':pnome', $nomeCompleto);
-        $grava->bindValue(':pdata', $nasc);
-        $grava->bindValue(':pgenero', $genero);
-        $grava->bindValue(':pemail', $email);
-        $grava->bindValue(':psenha', $senha);
-        $grava->execute();
+        $gravarInfosCadBD = $conn->prepare('INSERT INTO `cadastro` (`id_cad`, `nome_cad`, `data_cad`, `gen_cad`, `email_cad`, `url_cad`,`senha_cad`) VALUES (NULL, :pnome, :pdata, :pgenero, :pemail, "perfil-6.svg",:psenha);');
+        $gravarInfosCadBD->bindValue(':pnome', $nomeCompleto);
+        $gravarInfosCadBD->bindValue(':pdata', $nasc);
+        $gravarInfosCadBD->bindValue(':pgenero', $genero);
+        $gravarInfosCadBD->bindValue(':pemail', $email);
+        $gravarInfosCadBD->bindValue(':psenha', $senha);
+        $gravarInfosCadBD->execute();
 
         header('location:./login.php');
         exit();

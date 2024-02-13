@@ -5,30 +5,30 @@ session_start();
 voltarLogin();
 logout();
 
-if(isset($_GET['id'])){
-  $id_cofrinho = $_GET['id'];
-  $user_cofrinho=$conn->prepare('SELECT * FROM `cofrinho` WHERE `id_meta`=:pid');
-  $user_cofrinho->bindValue(':pid', $id_cofrinho);
-  $user_cofrinho->execute();
-  $row_cofrinho=$user_cofrinho->fetch();
+if (isset($_GET['id'])) {
+  $idCofrinho = $_GET['id'];
+  $userCofrinho = $conn->prepare('SELECT * FROM `cofrinho` WHERE `id_meta`=:pid');
+  $userCofrinho->bindValue(':pid', $idCofrinho);
+  $userCofrinho->execute();
+  $rowCofrinho = $userCofrinho->fetch();
 
-  $outras_metas=$conn->prepare('SELECT * FROM `cofrinho` WHERE `id_meta`!=:pidOutras');
-  $outras_metas->bindValue(':pidOutras', $id_cofrinho);
-  $outras_metas->execute();
-} else{
-  $user_cofrinho=$conn->prepare('SELECT * FROM `cofrinho` WHERE `id_user`=:pid');
-  $user_cofrinho->bindValue(':pid', $_SESSION['login']);
-  $user_cofrinho->execute();
-  $row_cofrinho=$user_cofrinho->fetch();
+  $outrasMetas = $conn->prepare('SELECT * FROM `cofrinho` WHERE `id_meta`!=:pidOutras');
+  $outrasMetas->bindValue(':pidOutras', $idCofrinho);
+  $outrasMetas->execute();
+} else {
+  $userCofrinho = $conn->prepare('SELECT * FROM `cofrinho` WHERE `id_user`=:pid');
+  $userCofrinho->bindValue(':pid', $_SESSION['login']);
+  $userCofrinho->execute();
+  $rowCofrinho = $userCofrinho->fetch();
 }
 
 
-$user_cad=$conn->prepare('SELECT * FROM `cadastro` WHERE `id_cad`=:pidCad');
-$user_cad->bindValue(':pidCad', $_SESSION['login']);
-$user_cad->execute();
-$row_nome=$user_cad->fetch();
+$userCad = $conn->prepare('SELECT * FROM `cadastro` WHERE `id_cad`=:pidCad');
+$userCad->bindValue(':pidCad', $_SESSION['login']);
+$userCad->execute();
+$rowNome = $userCad->fetch();
 
-if($user_cofrinho->rowCount()>1){
+if ($userCofrinho->rowCount() > 1) {
   header('location:escolha-cofrinho.php');
 }
 
@@ -36,6 +36,7 @@ if($user_cofrinho->rowCount()>1){
 
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -45,6 +46,7 @@ if($user_cofrinho->rowCount()>1){
   <link rel="stylesheet" href="../css/style.css">
   <script src="../../vendor/bootstrap/js/bootstrap.js"></script>
 </head>
+
 <body class="body-dashboard">
   <nav class="sidebar">
     <div class="content-sidebar">
@@ -83,30 +85,30 @@ if($user_cofrinho->rowCount()>1){
   </nav>
   <main class="main-content">
     <div class="linha-perfil">
-      <h1><?php echo $row_cofrinho['nome_meta']?></h1>
+      <h1><?php echo $rowCofrinho['nome_meta'] ?></h1>
       <a href="./perfil.php" class="perfil perfil-cofre">
-          <?php echo "<img src=\"../assets/ilustracoes/fotos-perfil/".$row_nome['url_cad']."\" alt=\"\">"?>
-          <p>
-            <?php
-              echo $row_nome['nome_cad'];
-            ?>
-          </p>
+        <?php echo "<img src=\"../assets/ilustracoes/fotos-perfil/" . $rowNome['url_cad'] . "\" alt=\"\">" ?>
+        <p>
+          <?php
+          echo $rowNome['nome_cad'];
+          ?>
+        </p>
       </a>
     </div>
-    
+
     <div class="cards-cofrinho">
       <div class="primeira-linha-cofre">
         <div class="primeiro-card">
           <h2>Valor que deseja guardar:</h2>
           <p><span>R$</span>
-          <?php
-            echo number_format($row_cofrinho['valor_meta'], 2, ',','.');
-          ?>
+            <?php
+            echo number_format($rowCofrinho['valor_meta'], 2, ',', '.');
+            ?>
           </p>
         </div>
         <div class="segundo-card">
           <h2>Durante:</h2>
-          <p><span><?php echo str_pad($row_cofrinho['tempo_meta'], 2,'0', STR_PAD_LEFT)?></span> meses</p>
+          <p><span><?php echo str_pad($rowCofrinho['tempo_meta'], 2, '0', STR_PAD_LEFT) ?></span> meses</p>
         </div>
       </div>
 
@@ -121,35 +123,36 @@ if($user_cofrinho->rowCount()>1){
 
           <div class="card-outros">
             <h2>Outras metas</h1>
-            <?php
-              if(isset($_GET['id'])){
-                while($row_outras=$outras_metas->fetch()){
+              <?php
+              if (isset($_GET['id'])) {
+                while ($rowOutras = $outrasMetas->fetch()) {
                   echo "
                     <div class=\"outros\">
-                      <p>".$row_outras['nome_meta']."</p>
-                      <a href=\"./cofrinho.php?id=".$row_outras['id_meta']."\">
+                      <p>" . $rowOutras['nome_meta'] . "</p>
+                      <a href=\"./cofrinho.php?id=" . $rowOutras['id_meta'] . "\">
                         <button class=\"btn-sm\">Acessar</button>
                       </a>
                     </div>
                   ";
                 }
               }
-            ?>
+              ?>
           </div>
         </div>
-        
+
         <div class="card-column-infos">
           <div class="card-um">
             <h2>Valor por mês:</h2>
-            <p><span>R$</span><?php echo number_format(($row_cofrinho['valor_meta']/$row_cofrinho['tempo_meta']), 2, ',','.') ?><span>/mês</span></p>
+            <p><span>R$</span><?php echo number_format(($rowCofrinho['valor_meta'] / $rowCofrinho['tempo_meta']), 2, ',', '.') ?><span>/mês</span></p>
           </div>
           <div class="card-dois">
             <h2>Progresso meses:</h2>
-            <p>01<span>/</span><?php echo str_pad($row_cofrinho['tempo_meta'], 2,'0', STR_PAD_LEFT)?></p>
+            <p>01<span>/</span><?php echo str_pad($rowCofrinho['tempo_meta'], 2, '0', STR_PAD_LEFT) ?></p>
           </div>
         </div>
       </div>
     </div>
   </main>
 </body>
+
 </html>

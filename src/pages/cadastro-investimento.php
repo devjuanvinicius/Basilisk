@@ -1,14 +1,14 @@
 <?php
-  include "conn.php";
-  include "function.php";
-  session_start();
-  voltarLogin();
-  logout();
-
+include "conn.php";
+include "function.php";
+session_start();
+voltarLogin();
+logout();
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,6 +16,7 @@
   <link rel="shortcut icon" href="../assets/fav-icon.ico" type="image/x-icon">
   <link rel="stylesheet" href="../css/style.css">
 </head>
+
 <body>
   <header class="header-load">
     <img src="../assets/logo.svg" alt="">
@@ -48,38 +49,39 @@
     </form>
   </main>
 </body>
+
 </html>
 
 <?php
-  
-  include "conn.php";
-  if(isset($_POST['grava'])){
-    $verificarExiste=$conn->prepare('SELECT * FROM `infos_investimento` WHERE `id_user` = :pid AND `status` = 1');
-    $verificarExiste->bindValue(':pid', $_SESSION['login']);
-    $verificarExiste->execute();
 
-    if($verificarExiste->rowCount() >= 1){
-      $updateStatus = $conn->prepare('UPDATE `infos_investimento` SET `status` = 0 WHERE `id_user` = :pid');
-      $updateStatus->bindValue(':pid', $_SESSION['login']);
-      $updateStatus->execute();
-    }
+include "conn.php";
+if (isset($_POST['grava'])) {
+  $verificarExiste = $conn->prepare('SELECT * FROM `infos_investimento` WHERE `id_user` = :pid AND `status` = 1');
+  $verificarExiste->bindValue(':pid', $_SESSION['login']);
+  $verificarExiste->execute();
 
-    $rendafixa=$_POST['rendafixa'];
-    $rendavariavel=$_POST['rendavariavel'];
-    $fundoimobiliaro=$_POST['fundoimobiliaro'];
-    $reservadeemergencia=$_POST['reservadeemergencia'];
-
-    $grava=$conn->prepare('INSERT INTO `infos_investimento` (`id_inv`, `CDB_inv`, `poupanca_inv`, `rendavariavel_inv`, `imoveis_inv`, `id_user`, `status`) VALUES (NULL, :prendafixa, :prendavariavel, :pfundoimobiliaro, :preservadeemergencia, :pidUser, 1);');
-    
-    $grava->bindValue(':prendafixa',$rendafixa);
-    $grava->bindValue(':prendavariavel',$rendavariavel);
-    $grava->bindValue(':pfundoimobiliaro',$fundoimobiliaro);
-    $grava->bindValue(':preservadeemergencia',$reservadeemergencia);
-    $grava->bindValue(':pidUser', $_SESSION['login']);
-    $grava->execute();
-
-    header('location:investimento.php');
-    exit();
+  if ($verificarExiste->rowCount() >= 1) {
+    $updateStatus = $conn->prepare('UPDATE `infos_investimento` SET `status` = 0 WHERE `id_user` = :pid');
+    $updateStatus->bindValue(':pid', $_SESSION['login']);
+    $updateStatus->execute();
   }
-  
+
+  $rendafixa = $_POST['rendafixa'];
+  $rendavariavel = $_POST['rendavariavel'];
+  $fundoimobiliaro = $_POST['fundoimobiliaro'];
+  $reservadeemergencia = $_POST['reservadeemergencia'];
+
+  $grava = $conn->prepare('INSERT INTO `infos_investimento` (`id_inv`, `CDB_inv`, `poupanca_inv`, `rendavariavel_inv`, `imoveis_inv`, `id_user`, `status`) VALUES (NULL, :prendafixa, :prendavariavel, :pfundoimobiliaro, :preservadeemergencia, :pidUser, 1);');
+
+  $grava->bindValue(':prendafixa', $rendafixa);
+  $grava->bindValue(':prendavariavel', $rendavariavel);
+  $grava->bindValue(':pfundoimobiliaro', $fundoimobiliaro);
+  $grava->bindValue(':preservadeemergencia', $reservadeemergencia);
+  $grava->bindValue(':pidUser', $_SESSION['login']);
+  $grava->execute();
+
+  header('location:investimento.php');
+  exit();
+}
+
 ?>

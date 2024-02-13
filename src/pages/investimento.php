@@ -1,72 +1,89 @@
 <?php
 include "conn.php";
 include "function.php";
+require_once "bootstrap.php";
 session_start();
 voltarLogin();
 logout();
 
-$user_name = $conn->prepare('SELECT * FROM `cadastro` WHERE `id_cad`=:pid');
-$user_name->bindValue(':pid', $_SESSION['login']);
-$user_name->execute();
-$row_nome = $user_name->fetch();
+$userName = $conn->prepare('SELECT * FROM `cadastro` WHERE `id_cad`=:pid');
+$userName->bindValue(':pid', $_SESSION['login']);
+$userName->execute();
+$rowName = $userName->fetch();
 
 $dadosInvestimento = $conn->prepare('SELECT * FROM `infos_investimento` WHERE `id_user` = :pid AND `status` = 1');
 $dadosInvestimento->bindValue(':pid', $_SESSION['login']);
 $dadosInvestimento->execute();
-$row_investimento = $dadosInvestimento->fetch();
+$rowInvestimento = $dadosInvestimento->fetch();
 
-if($dadosInvestimento->rowCount() == 0){
+if ($dadosInvestimento->rowCount() == 0) {
   header('location:explicacao.php?pagina=1');
   exit();
 }
 
-$totalInvestimento = $row_investimento['CDB_inv'] + $row_investimento['poupanca_inv'] + $row_investimento['rendavariavel_inv'] + $row_investimento['imoveis_inv'];
+$totalInvestimento = $rowInvestimento['CDB_inv'] + $rowInvestimento['poupanca_inv'] + $rowInvestimento['rendavariavel_inv'] + $rowInvestimento['imoveis_inv'];
 
 
 // Começa API
-$apiKey = '6e71a18ebb384adda69f4e08ba5a638c';
-$baseCurrency = 'BRL'; // Real brasileiro
-$targetCurrency = 'USD'; // Dólar americano
-$exchangeRateApiUrl = "https://open.er-api.com/v6/latest?apikey=$apiKey&base=$baseCurrency";
-
+$apiKey = getenv('API_KEY');
+$baseCurrency = 'BRL';
+$targetCurrency = 'USD';
+$exchangeRateApiUrl = getenv('API_URL');
 $exchangeRateData = @file_get_contents($exchangeRateApiUrl);
-//caso de erro por causa da api
 if ($exchangeRateData === false) {
-
-    die('Erro ao obter a taxa de câmbio.');
+  die('Erro ao obter a taxa de câmbio.');
 }
 
 $exchangeRateData = json_decode($exchangeRateData, true);
 
-
 if ($exchangeRateData === null || !isset($exchangeRateData['rates'][$targetCurrency])) {
-    // Tratamento de erro caso a decodificação falhe ou a moeda alvo não esteja presente
-    die('Erro ao processar os dados da taxa de câmbio.');
+  die('Erro ao processar os dados da taxa de câmbio.');
 }
 
 $usdToBrlRate = $exchangeRateData['rates'][$targetCurrency];
-// Acaba API 
+
+
+$baseCurrency = 'EUR';
+$targetCurrency = 'BRL';
+$exchangeRateApiUrl = "https://open.er-api.com/v6/latest?apikey=$apiKey&base=$baseCurrency&symbols=$targetCurrency";
+
+$exchangeRateData = @file_get_contents($exchangeRateApiUrl);
+if ($exchangeRateData === false) {
+  die('Erro ao obter a taxa de câmbio.');
+}
+
+$exchangeRateData = json_decode($exchangeRateData, true);
+
+if ($exchangeRateData === null || !isset($exchangeRateData['rates'][$targetCurrency])) {
+  die('Erro ao processar os dados da taxa de câmbio.');
+}
+
+$eurToBrlRate = $exchangeRateData['rates'][$targetCurrency];
 
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../css/style.css">
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-  <!-- Configs grafico -->
+  <!-- Made with Google Chart -->
   <script type="text/javascript">
-    google.charts.load("current", {packages:["corechart"]});
+    google.charts.load("current", {
+      packages: ["corechart"]
+    });
     google.charts.setOnLoadCallback(drawChart);
+
     function drawChart() {
       var data = google.visualization.arrayToDataTable([
         ['Task', 'Hours per Day'],
-        ['CDB', <?php echo $row_investimento['CDB_inv'] ?>],
-        ['Poupança', <?php echo $row_investimento['poupanca_inv'] ?>],
-        ['Renda Variável',  <?php echo $row_investimento['rendavariavel_inv'] ?>],
-        ['Imoveis', <?php echo $row_investimento['imoveis_inv']?>],
+        ['CDB', <?php echo $rowInvestimento['CDB_inv'] ?>],
+        ['Poupança', <?php echo $rowInvestimento['poupanca_inv'] ?>],
+        ['Renda Variável', <?php echo $rowInvestimento['rendavariavel_inv'] ?>],
+        ['Imoveis', <?php echo $rowInvestimento['imoveis_inv'] ?>],
       ]);
 
       var options = {
@@ -75,33 +92,51 @@ $usdToBrlRate = $exchangeRateData['rates'][$targetCurrency];
         pieHole: 0.4,
         backgroundColor: 'transparent',
         height: '100%',
-        legend:{
-          position:'none',
-          alignment:'center',
+        legend: {
+          position: 'none',
+          alignment: 'center',
         },
 
-        chartArea:{
+        chartArea: {
           width: '70%',
           height: '70%',
         },
 
-        titleTextStyle:{
+        titleTextStyle: {
           color: '#f6f6f6',
-          fontName:'Roboto Slab',
+          fontName: 'Roboto Slab',
           fontSize: '28.8',
           bold: true,
-          height:'25%',
+          height: '25%',
         },
 
-        slices:[
-          {color:'#f94144'},{color:'#f3722c'},{color:'#f8961e'},{color:'#f9c74f'},{color:'#90be6d'},{color:'#43aa8b'}, {color:'#4d908e'},{color:'#577590'},
-        ],
-        
-        pieSliceBorderColor:'#772e25',
-        pieSliceTextStyle:{bold:true, color: '#F6F6F6', fontSize: '14'},
+        slices: [{
+          color: '#f94144'
+        }, {
+          color: '#f3722c'
+        }, {
+          color: '#f8961e'
+        }, {
+          color: '#f9c74f'
+        }, {
+          color: '#90be6d'
+        }, {
+          color: '#43aa8b'
+        }, {
+          color: '#4d908e'
+        }, {
+          color: '#577590'
+        }, ],
 
-        tooltip:{
-          textStyle:{
+        pieSliceBorderColor: '#772e25',
+        pieSliceTextStyle: {
+          bold: true,
+          color: '#F6F6F6',
+          fontSize: '14'
+        },
+
+        tooltip: {
+          textStyle: {
             color: '#111111',
             fontName: 'Roboto Slab',
             bold: true,
@@ -117,6 +152,7 @@ $usdToBrlRate = $exchangeRateData['rates'][$targetCurrency];
   <title>Investimento - Basilisk</title>
   <link rel="shortcut icon" href="../assets/fav-icon.ico" type="image/x-icon">
 </head>
+
 <body class="body-dashboard">
   <nav class="sidebar">
     <div class="content-sidebar">
@@ -157,12 +193,12 @@ $usdToBrlRate = $exchangeRateData['rates'][$targetCurrency];
     <div class="linha-perfil">
       <h1>Investimentos</h1>
       <div class="perfil perfil-cofre">
-          <?php echo "<img src=\"../assets/ilustracoes/fotos-perfil/".$row_nome['url_cad']."\" alt=\"\">"?>
-          <p>
-            <?php
-              echo $row_nome['nome_cad'];
-            ?>
-          </p>
+        <?php echo "<img src=\"../assets/ilustracoes/fotos-perfil/" . $rowName['url_cad'] . "\" alt=\"\">" ?>
+        <p>
+          <?php
+          echo $rowName['nome_cad'];
+          ?>
+        </p>
       </div>
     </div>
     <!-- Depois refatorar para primeira-linha e deixar todos os dashs com essa configuração -->
@@ -172,7 +208,7 @@ $usdToBrlRate = $exchangeRateData['rates'][$targetCurrency];
           <h2>Total investido:</h2>
           <p><span>R$</span>
             <?php
-              echo number_format($totalInvestimento, 2, ',','.');
+            echo number_format($totalInvestimento, 2, ',', '.');
             ?>
           </p>
         </div>
@@ -187,57 +223,75 @@ $usdToBrlRate = $exchangeRateData['rates'][$targetCurrency];
         <div class="card-infos-invi">
           <div class="card-invi-mudanca">
             <h2>CDB:</h2>
-            <p>R$<?php echo $row_investimento['CDB_inv']?></p>
+            <p>R$<?php echo $rowInvestimento['CDB_inv'] ?></p>
             <a href="cadastro-investimento.php">
               <button class="btn-md btn-invi">Alterar</button>
             </a>
           </div>
           <div class="card-invi-mudanca">
             <h2>Poupança:</h2>
-            <p>R$<?php echo $row_investimento['poupanca_inv']?></p>
+            <p>R$<?php echo $rowInvestimento['poupanca_inv'] ?></p>
             <a href="cadastro-investimento.php">
               <button class="btn-md btn-invi">Alterar</button>
             </a>
           </div>
           <div class="card-invi-mudanca">
             <h2>Renda Variavel:</h2>
-            <p>R$<?php echo $row_investimento['rendavariavel_inv']?></p>
+            <p>R$<?php echo $rowInvestimento['rendavariavel_inv'] ?></p>
             <a href="">
               <button class="btn-md btn-invi">Alterar</button>
             </a>
           </div>
           <div class="card-invi-mudanca">
             <h2>Imoveis:</h2>
-            <p>R$<?php echo $row_investimento['imoveis_inv']?></p>
+            <p>R$<?php echo $rowInvestimento['imoveis_inv'] ?></p>
             <a href="">
               <button class="btn-md btn-invi">Alterar</button>
             </a>
           </div>
         </div>
         <div class="card-moeda">
-            <div class="title-moeda">
-              <h2>Cotação atual do dólar</h2>
-              <hr>
-            </div>
-            
-            <div class="txt-moeda">
-              <div class="brl-moeda">
-                <h3>BRL(R$)</h3>
-                <p><span>R$</span><?php echo number_format(1 / $usdToBrlRate, 2, ',', '.'); ?></p>
-              </div>
-              <div class="usd-moeda">
-                <h3>USD($)</h3>
-                <p><span>US$</span>1,00</p>
-              </div>
-              <a href="https://www.bcb.gov.br/conversao" target="_blank">
-                <button class="btn-md">Fazer conversão</button>
-              </a>
-            </div>
+          <div class="title-moeda">
+            <h2>Cotação atual do dólar</h2>
+            <hr>
           </div>
+
+          <div class="txt-moeda">
+            <div class="moedas">
+              <div class="brl_to_usd">
+                <div class="usd-moeda">
+                  <h3>USD($)</h3>
+                  <p><span>US$</span>1,00</p>
+                </div>
+
+                <div class="brl-moeda">
+                  <h3>BRL(R$)</h3>
+                  <p><span>R$</span><?php echo number_format(1 / $usdToBrlRate, 2, ',', '.'); ?></p>
+                </div>
+              </div>
+              <div class="brl_to_eur">
+                <div class="eur-moeda">
+                  <h3>EUR(&euro;)</h3>
+                  <p><span>&euro;</span>1,00</p>
+                </div>
+                
+                <div div class="brl-moeda">
+                  <h3>BRL(R$)</h3>
+                  <p><span>R$</span><?php echo number_format($eurToBrlRate, 2, ',', '.');; ?></p>
+                </div>
+              </div>
+            </div>
+
+            <a href="https://www.bcb.gov.br/conversao" target="_blank">
+              <button class="btn-md">Fazer conversão</button>
+            </a>
           </div>
         </div>
       </div>
     </div>
+    </div>
+    </div>
   </main>
 </body>
+
 </html>

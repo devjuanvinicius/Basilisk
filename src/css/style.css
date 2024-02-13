@@ -2623,7 +2623,7 @@ table {
 
 .card-moeda {
   height: 100%;
-  width: 25%;
+  width: 35%;
   background-color: #2F2F2F;
   border-radius: 40px;
   display: flex;
@@ -2652,6 +2652,16 @@ table {
   display: flex;
   flex-direction: column;
   gap: 40px;
+}
+.txt-moeda .moedas {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+}
+.txt-moeda .brl_to_usd, .txt-moeda .brl_to_eur {
+  display: flex;
+  flex-direction: column;
+  gap: 45px;
 }
 .txt-moeda h3 {
   color: #F6F6F6;

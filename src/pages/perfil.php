@@ -4,10 +4,10 @@ include "function.php";
 session_start();
 voltarLogin();
 
-$user_name = $conn->prepare('SELECT * FROM `cadastro` WHERE `id_cad`=:pid');
-$user_name->bindValue(':pid', $_SESSION['login']);
-$user_name->execute();
-$row_user = $user_name->fetch();
+$userName = $conn->prepare('SELECT * FROM `cadastro` WHERE `id_cad`=:pid');
+$userName->bindValue(':pid', $_SESSION['login']);
+$userName->execute();
+$rowUser = $userName->fetch();
 
 if(isset($_GET['excluir'])){
   $excluirConta = $conn->prepare('DELETE FROM `cadastro` WHERE `cadastro`.`id_cad` = :pidExclusao');
@@ -32,22 +32,22 @@ if(isset($_GET['excluir'])){
     <a href="./dashboard.php"><img src="../assets/logo.svg" alt=""></a>
   </header>
   <main class="main-perfil">
-    <?php echo "<img src=\"../assets/ilustracoes/fotos-perfil/".$row_user['url_cad']."\" alt=\"\">"?>
+    <?php echo "<img src=\"../assets/ilustracoes/fotos-perfil/".$rowUser['url_cad']."\" alt=\"\">"?>
     <form action="perfil.php" method="post" enctype="multipart/form-data">
       <?php
         if(isset($_POST['alterar'])){
           ?>
             <div class="input-perfil">
               <label for="nome-alterado">Nome:</label>
-              <?php echo "<input type=\"text\" id=\"nome-alterado\" name=\"nome-alterado\" value=\"".$row_user['nome_cad']."\">"?>
+              <?php echo "<input type=\"text\" id=\"nome-alterado\" name=\"nome-alterado\" value=\"".$rowUser['nome_cad']."\">"?>
             </div>
             <div class="input-perfil">
               <label for="email-alterado">E-mail:</label>
-              <?php echo "<input type=\"email\" id=\"email-alterado\" name=\"email-alterado\" value=\"".$row_user['email_cad']."\">"?>
+              <?php echo "<input type=\"email\" id=\"email-alterado\" name=\"email-alterado\" value=\"".$rowUser['email_cad']."\">"?>
             </div>
             <div class="input-perfil">
               <label for="data-alterado">Data de nascimento:</label>
-              <?php echo "<input type=\"date\" id=\"data-alterado\" name=\"data-alterado\" value=\"".$row_user['data_cad']."\">"?>
+              <?php echo "<input type=\"date\" id=\"data-alterado\" name=\"data-alterado\" value=\"".$rowUser['data_cad']."\">"?>
             </div>
             <div class="escolher-foto">
               <h2>Escolha sua foto de perfil</h2>
@@ -99,15 +99,15 @@ if(isset($_GET['excluir'])){
           ?>
             <div class="input-perfil">
               <label for="nome-perfil">Nome:</label>
-              <?php echo "<input type=\"text\" id=\"nome-perfil\" name=\"nome-perfil\" value=\"".$row_user['nome_cad']."\" disabled>"?>
+              <?php echo "<input type=\"text\" id=\"nome-perfil\" name=\"nome-perfil\" value=\"".$rowUser['nome_cad']."\" disabled>"?>
             </div>
             <div class="input-perfil">
               <label for="email">E-mail:</label>
-              <?php echo "<input type=\"email\" id=\"email\" name=\"email\" value=\"".$row_user['email_cad']."\" disabled>"?>
+              <?php echo "<input type=\"email\" id=\"email\" name=\"email\" value=\"".$rowUser['email_cad']."\" disabled>"?>
               <div class="input-perfil">
               </div>
               <label for="data-nasc">Data de nascimento:</label>
-              <?php echo "<input type=\"date\" id=\"data-nasc\" name=\"data-nasc\" value=\"".$row_user['data_cad']."\" disabled>"?>
+              <?php echo "<input type=\"date\" id=\"data-nasc\" name=\"data-nasc\" value=\"".$rowUser['data_cad']."\" disabled>"?>
             </div>
             <div class="btn-perfil">
               <input type="submit" class="btn-md" value="Alterar" id="alterar" name="alterar">

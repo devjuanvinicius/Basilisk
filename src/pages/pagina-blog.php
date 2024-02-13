@@ -1,6 +1,4 @@
 <?php
-
-//error_reporting(0);
 include "conn.php";
 $idPost=$_GET['id'];
 echo $idPost;

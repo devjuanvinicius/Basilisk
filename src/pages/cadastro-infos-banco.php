@@ -3,11 +3,6 @@
   include "function.php";
   session_start();
   voltarLogin();
-
-  $user_name=$conn->prepare('SELECT * FROM `cadastro` WHERE `id_cad`=:pid');
-  $user_name->bindValue(':pid', $_SESSION['login']);
-  $user_name->execute();
-  $row_nome=$user_name->fetch();
 ?>
 
 <!DOCTYPE html>
@@ -135,38 +130,38 @@
     $moedaRenda = $_POST['moeda-renda'];
     $moedaGasto = $_POST['moeda-gasto'];
     
-    $verificarExiste=$conn->prepare('SELECT * FROM `infos_bancarias` WHERE `id_user` = :pid AND `status` = 1');
-    $verificarExiste->bindValue(':pid', $_SESSION['login']);
-    $verificarExiste->execute();
+    $verificarSeExisteInfo=$conn->prepare('SELECT * FROM `infos_bancarias` WHERE `id_user` = :pid AND `status` = 1');
+    $verificarSeExisteInfo->bindValue(':pid', $_SESSION['login']);
+    $verificarSeExisteInfo->execute();
 
-    if($verificarExiste->rowCount() >= 1){
+    if($verificarSeExisteInfo->rowCount() >= 1){
       $updateStatus = $conn->prepare('UPDATE `infos_bancarias` SET `status` = 0 WHERE `id_user` = :pid');
       $updateStatus->bindValue(':pid', $_SESSION['login']);
       $updateStatus->execute();
     }
 
-    $enviar=$conn->prepare('INSERT INTO `infos_bancarias`(`id_dados`, `renda_mensal`, `outra_renda`, `renda_final`, `gastos_moradia`, `gastos_alimentacao`, `gastos_transporte`, `gastos_saude`, `gastos_educacao`, `gastos_pessoais`, `gastos_comunicacao`, `gastos_lazer`, `moeda-renda`,`moeda-gasto`, `id_user`, `status`) VALUES (NULL, :prendaMensal, :poutraRenda, :prendaFinal, :pgastosMoradia, :pgastosAlimentacao, :pgastosTransporte, :pgastosSaude, :pgastosEducacao, :pgastosPessoais, :pgastosComunicacao, :pgastosLazer, :pmoedaRenda, :pmoedaGasto, :pidUser, 1)');
+    $enviarInfosBancarias=$conn->prepare('INSERT INTO `infos_bancarias`(`id_dados`, `renda_mensal`, `outra_renda`, `renda_final`, `gastos_moradia`, `gastos_alimentacao`, `gastos_transporte`, `gastos_saude`, `gastos_educacao`, `gastos_pessoais`, `gastos_comunicacao`, `gastos_lazer`, `moeda-renda`,`moeda-gasto`, `id_user`, `status`) VALUES (NULL, :prendaMensal, :poutraRenda, :prendaFinal, :pgastosMoradia, :pgastosAlimentacao, :pgastosTransporte, :pgastosSaude, :pgastosEducacao, :pgastosPessoais, :pgastosComunicacao, :pgastosLazer, :pmoedaRenda, :pmoedaGasto, :pidUser, 1)');
 
-    $enviar->bindValue(':prendaMensal', $rendaMensal);
-    $enviar->bindValue(':poutraRenda', $outraRenda);
-    $enviar->bindValue(':prendaFinal', $rendaFinal);
-    $enviar->bindValue(':pgastosMoradia', $gastosMoradia);
-    $enviar->bindValue(':pgastosAlimentacao', $gastosAlimentacao);
-    $enviar->bindValue(':pgastosTransporte', $gastosTransporte);
-    $enviar->bindValue(':pgastosSaude', $gastosSaude);
-    $enviar->bindValue(':pgastosEducacao', $gastosEducacao);
-    $enviar->bindValue(':pgastosPessoais', $gastosPessoais);
-    $enviar->bindValue(':pgastosComunicacao', $gastosComunicacao);
-    $enviar->bindValue(':pgastosLazer', $gastosLazer);
-    $enviar->bindValue(':pmoedaRenda', $moedaRenda);
-    $enviar->bindValue(':pmoedaGasto', $moedaGasto);
-    $enviar->bindValue(':pidUser', $_SESSION['login']);
-    $enviar->execute();
+    $enviarInfosBancarias->bindValue(':prendaMensal', $rendaMensal);
+    $enviarInfosBancarias->bindValue(':poutraRenda', $outraRenda);
+    $enviarInfosBancarias->bindValue(':prendaFinal', $rendaFinal);
+    $enviarInfosBancarias->bindValue(':pgastosMoradia', $gastosMoradia);
+    $enviarInfosBancarias->bindValue(':pgastosAlimentacao', $gastosAlimentacao);
+    $enviarInfosBancarias->bindValue(':pgastosTransporte', $gastosTransporte);
+    $enviarInfosBancarias->bindValue(':pgastosSaude', $gastosSaude);
+    $enviarInfosBancarias->bindValue(':pgastosEducacao', $gastosEducacao);
+    $enviarInfosBancarias->bindValue(':pgastosPessoais', $gastosPessoais);
+    $enviarInfosBancarias->bindValue(':pgastosComunicacao', $gastosComunicacao);
+    $enviarInfosBancarias->bindValue(':pgastosLazer', $gastosLazer);
+    $enviarInfosBancarias->bindValue(':pmoedaRenda', $moedaRenda);
+    $enviarInfosBancarias->bindValue(':pmoedaGasto', $moedaGasto);
+    $enviarInfosBancarias->bindValue(':pidUser', $_SESSION['login']);
+    $enviarInfosBancarias->execute();
     
     
-    $row_info_dados=$enviar->fetch();
-    $id_info_dados=$row_info_dados['id_user'];
-    $_SESSION['cad_info_dados']=$id_info_dados;
+    $rowInfoDados=$enviarInfosBancarias->fetch();
+    $idInfoDados=$rowInfoDados['id_user'];
+    $_SESSION['cad_info_dados']=$idInfoDados;
     echo "<script> window.location.href='dashboard.php';</script>";
     exit();
   }
